@@ -1,0 +1,118 @@
+// lib/mock/workflow-runs.ts
+// Seed data for the Workflow Wizard: a mix of in-progress and completed runs
+// across both domains, for the same four patients used in the Clinical
+// Documentation mock history (lib/mock/documentation.ts), so the modules
+// read as one clinic rather than four unrelated data sets.
+
+import type { WorkflowRun } from "@/types";
+
+export const MOCK_WORKFLOW_RUNS: WorkflowRun[] = [
+  {
+    id: "run-1",
+    workflowId: "sleep_study",
+    patientName: "Heather Stewart",
+    status: "in_progress",
+    completedStepIds: ["verify-insurance", "confirm-provider-order"],
+    confirmedInfoItems: ["Patient Name", "DOB", "Insurance"],
+    documentationGenerated: false,
+    generatedNoteText: null,
+    startedAt: "2026-09-24T10:00:00Z",
+    updatedAt: "2026-09-25T14:30:00Z",
+    completedAt: null,
+  },
+  {
+    id: "run-2",
+    workflowId: "pap_order",
+    patientName: "Heather Stewart",
+    status: "completed",
+    completedStepIds: ["verify-insurance", "confirm-equipment", "send-order-to-dme", "confirm-fax-received", "generate-documentation"],
+    confirmedInfoItems: ["Patient Name", "DOB", "Insurance", "Equipment Ordered", "DME Supplier"],
+    documentationGenerated: true,
+    generatedNoteText:
+      "09/21/26 @ 2:20 PM – PAP order sent to NLM for ResMed AirSense 11 + nasal mask. Fax confirmation #48213 received.",
+    startedAt: "2026-09-20T09:00:00Z",
+    updatedAt: "2026-09-21T14:20:00Z",
+    completedAt: "2026-09-21T14:20:00Z",
+  },
+  {
+    id: "run-3",
+    workflowId: "prior_auth_glp1",
+    patientName: "Yukiko Britt",
+    status: "in_progress",
+    completedStepIds: ["confirm-order"],
+    confirmedInfoItems: ["Patient Name", "DOB"],
+    documentationGenerated: false,
+    generatedNoteText: null,
+    startedAt: "2026-09-23T09:00:00Z",
+    updatedAt: "2026-09-23T13:05:00Z",
+    completedAt: null,
+  },
+  {
+    id: "run-4",
+    workflowId: "weight_followup",
+    patientName: "Yukiko Britt",
+    status: "completed",
+    completedStepIds: ["call-patient", "log-weight", "flag-concerns", "generate-documentation"],
+    confirmedInfoItems: ["Patient Name", "DOB", "Current Weight", "Progress Since Last Visit"],
+    documentationGenerated: true,
+    generatedNoteText:
+      "09/25/26 @ 10:30 AM – Monthly weight follow-up call completed. Pt reports tolerating medication well. Current weight: 189 lbs. Progress note: down 5 lbs since last visit.",
+    startedAt: "2026-09-25T10:15:00Z",
+    updatedAt: "2026-09-25T10:30:00Z",
+    completedAt: "2026-09-25T10:30:00Z",
+  },
+  {
+    id: "run-5",
+    workflowId: "labcorp",
+    patientName: "Maria Johnson",
+    status: "in_progress",
+    completedStepIds: ["confirm-order", "send-to-labcorp"],
+    confirmedInfoItems: ["Patient Name", "DOB", "Test(s) Ordered"],
+    documentationGenerated: false,
+    generatedNoteText: null,
+    startedAt: "2026-09-22T08:30:00Z",
+    updatedAt: "2026-09-22T09:00:00Z",
+    completedAt: null,
+  },
+  {
+    id: "run-6",
+    workflowId: "new_weight_consult",
+    patientName: "Maria Johnson",
+    status: "completed",
+    completedStepIds: ["verify-insurance", "collect-intake", "review-with-provider", "generate-documentation"],
+    confirmedInfoItems: ["Patient Name", "DOB", "Insurance", "Weight/BMI", "Program Interest"],
+    documentationGenerated: true,
+    generatedNoteText:
+      "09/12/26 @ 11:00 AM – Followed up after new weight consult. Program interest: GLP-1 medication. Next step: schedule lab work before medication start.",
+    startedAt: "2026-09-12T10:30:00Z",
+    updatedAt: "2026-09-12T11:00:00Z",
+    completedAt: "2026-09-12T11:00:00Z",
+  },
+  {
+    id: "run-7",
+    workflowId: "referral",
+    patientName: "David Wilson",
+    status: "in_progress",
+    completedStepIds: ["confirm-referral-need", "collect-roi", "send-referral"],
+    confirmedInfoItems: ["Patient Name", "DOB", "Insurance", "Referral Reason", "Receiving Office"],
+    documentationGenerated: false,
+    generatedNoteText: null,
+    startedAt: "2026-09-16T09:00:00Z",
+    updatedAt: "2026-09-17T16:15:00Z",
+    completedAt: null,
+  },
+  {
+    id: "run-8",
+    workflowId: "medication_followup",
+    patientName: "David Wilson",
+    status: "completed",
+    completedStepIds: ["call-patient", "log-side-effects", "route-refill", "generate-documentation"],
+    confirmedInfoItems: ["Patient Name", "DOB", "Medication", "Side Effects", "Refill Status"],
+    documentationGenerated: true,
+    generatedNoteText:
+      "09/16/26 @ 12:00 PM – Called pt to check in on Tirzepatide. Pt reports mild nausea, otherwise tolerating well. Followed up on Tirzepatide. Side effects reported: mild nausea, improving. Refill needed: Yes.",
+    startedAt: "2026-09-16T11:45:00Z",
+    updatedAt: "2026-09-16T12:00:00Z",
+    completedAt: "2026-09-16T12:00:00Z",
+  },
+];
